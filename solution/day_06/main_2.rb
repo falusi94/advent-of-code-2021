@@ -21,6 +21,8 @@ class State
   end
 
   def total_count = count_of_new_fishes.sum + count_of_fishes.sum
+
+  attr_reader :count_of_fishes, :count_of_new_fishes
 end
 
 state = State.new(initial_state)
