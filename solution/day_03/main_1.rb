@@ -13,8 +13,8 @@ gamma_bin =
 
 epsilon_bin = gamma_bin.chars.map { |char| char == '1' ? '0' : '1' }.join
 
-gamma   = eval "0b#{gamma_bin}"
-epsilon = eval "0b#{epsilon_bin}"
+gamma   = gamma_bin.to_i(2)
+epsilon = epsilon_bin.to_i(2)
 
 puts 'Part #1'
 puts "gamma: #{gamma}, epsilon: #{epsilon}"

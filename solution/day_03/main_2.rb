@@ -21,8 +21,8 @@ oxygen_gen_rating_bin =
 scrubber_rating_bin   =
   find_rating(input_list) { |bit_counts| bit_counts['0'] > bit_counts['1'] ? '1' : '0' }
 
-oxygen_gen_rating = eval "0b#{oxygen_gen_rating_bin}"
-scrubber_rating   = eval "0b#{scrubber_rating_bin}"
+oxygen_gen_rating = oxygen_gen_rating_bin.to_i(2)
+scrubber_rating   = scrubber_rating_bin.to_i(2)
 
 puts 'Part #2'
 puts "oxygen_gen_rating: #{oxygen_gen_rating}, scrubber_rating: #{scrubber_rating}"
