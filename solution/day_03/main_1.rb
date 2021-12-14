@@ -4,8 +4,7 @@ path = File.join(__dir__, 'input.txt')
 
 gamma_bin =
   File
-  .readlines(path)
-  .map(&:chomp)
+  .readlines(path, chomp: true)
   .map(&:chars)
   .transpose
   .map(&:tally)

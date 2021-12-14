@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 path      = File.join(__dir__, 'input.txt')
-heightmap = File.readlines(path).map { |line| line.chomp.split('').map(&:to_i) }
+heightmap = File.readlines(path, chomp: true).map { |line| line.split('').map(&:to_i) }
 
 local_minimums = []
 

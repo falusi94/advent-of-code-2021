@@ -6,7 +6,7 @@ class Board
   attr_reader :index
 
   def initialize(fields_data)
-    @fields = fields_data.lines.map(&:chomp).map(&:split)
+    @fields = fields_data.lines(chomp: true).map(&:split)
   end
 
   def draw(number)

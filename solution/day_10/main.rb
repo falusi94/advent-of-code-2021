@@ -31,8 +31,8 @@ end
 
 corrupted_lines, incomplete_lines =
   File
-  .readlines(path)
-  .map { |line| process(line.chomp) }
+  .readlines(path, chomp: true)
+  .map { |line| process(line) }
   .partition { |result| result.is_a?(String) }
 
 error_score = corrupted_lines.map { |incorrect_char| ERROR_SCORE_MAPPING[incorrect_char] }.sum

@@ -15,7 +15,7 @@ def find_rating(input)
   end.first.join
 end
 
-input_list = File.readlines(path).map(&:chomp).map(&:chars)
+input_list = File.readlines(path, chomp: true).map(&:chars)
 oxygen_gen_rating_bin =
   find_rating(input_list) { |bit_counts| bit_counts['0'] > bit_counts['1'] ? '0' : '1' }
 scrubber_rating_bin   =
