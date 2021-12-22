@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SnailfishNumber
+  SplitLimitReachedError = Class.new(StandardError)
+
   State = Struct.new(:prev_node, :r_remainder, keyword_init: true) do
     def self.clean = new(r_remainder: 0)
 
@@ -33,8 +35,12 @@ class SnailfishNumber
   def reduce
     loop do
       prev_state = to_s
-      explode
-      split
+      begin
+        explode
+        split
+      rescue SplitLimitReachedError
+        # no-op
+      end
       break if prev_state == to_s
     end
     self
@@ -82,8 +88,14 @@ class SnailfishNumber
 
   def split(node = @root, parent = nil)
     if node.is_a?(Node)
+      l_value_before = node.l_value
       node.l_value = split(node.l_value, node)
+      raise SplitLimitReachedError unless l_value_before == node.l_value
+
+      r_value_before = node.r_value
       node.r_value = split(node.r_value, node)
+      raise SplitLimitReachedError unless r_value_before == node.r_value
+
       node
     elsif node < 10
       node
